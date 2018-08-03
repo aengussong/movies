@@ -8,6 +8,6 @@ import retrofit2.http.Query;
 
 public interface ApiLinks {
 
-    @GET("/movie/top_rated")
+    @GET("/3/movie/top_rated")
     Single<MoviesResponse> getMovies(@Query("page") int page);
 }

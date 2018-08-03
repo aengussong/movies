@@ -41,12 +41,12 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
-    implementation 'com.google.code.gson:gson:2.8.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.4.1'
     //    rx
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
     //    support
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
@@ -56,11 +56,8 @@ dependencies {
     //    image loader
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
-    //    database
-    implementation 'android.arch.persistence.room:runtime:1.1.1'
-    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
-    implementation 'android.arch.persistence.room:rxjava2:1.1.1'
     //    aac
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     implementation 'android.arch.lifecycle:viewmodel:1.1.1'
+    implementation "android.arch.paging:runtime:1.0.1"
 }

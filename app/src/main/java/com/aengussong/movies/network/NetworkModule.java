@@ -1,12 +1,9 @@
 package com.aengussong.movies.network;
 
-import android.support.annotation.NonNull;
-
 import com.aengussong.movies.data.Constants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -14,10 +11,8 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.HttpUrl;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -36,26 +31,24 @@ public class NetworkModule {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        httpClient.addInterceptor(new Interceptor() {
-            @Override
-            public Response intercept(@NonNull Chain chain) throws IOException {
-                Request original = chain.request();
+        httpClient.addInterceptor(chain -> {
+            Request original = chain.request();
 
-                HttpUrl originalHttpUrl = original.url();
+            HttpUrl originalHttpUrl = original.url();
 
-                HttpUrl url = originalHttpUrl.newBuilder()
-                        .addQueryParameter("api_key", Constants.API_KEY)
-                        .build();
+            HttpUrl url = originalHttpUrl.newBuilder()
+                    .addQueryParameter("api_key", Constants.API_KEY)
+                    .build();
 
-                Request.Builder requestBuilder = original.newBuilder()
-                        .header("Accept", "application/json")
-                        .header("Content-Type", "application/json")
+            Request.Builder requestBuilder = original.newBuilder()
+                    .header("Accept", "application/json")
+                    .header("Content-Type", "application/json")
+                    .url(url)
+                    .method(original.method(), original.body());
 
-                        .method(original.method(), original.body());
 
-                Request request = requestBuilder.build();
-                return chain.proceed(request);
-            }
+            Request request = requestBuilder.build();
+            return chain.proceed(request);
         });
 
         httpClient.addInterceptor(loggingInterceptor);

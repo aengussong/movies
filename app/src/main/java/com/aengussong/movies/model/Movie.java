@@ -1,10 +1,12 @@
 package com.aengussong.movies.model;
 
+import android.support.v7.util.DiffUtil;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Movie implements Serializable{
+public class Movie implements Serializable {
 
     private String id;
 
@@ -44,4 +46,24 @@ public class Movie implements Serializable{
     public String getPosterPath() {
         return posterPath;
     }
+
+    public static DiffUtil.ItemCallback<Movie> DIFF_CALLBACK = new DiffUtil.ItemCallback<Movie>() {
+        @Override
+        public boolean areItemsTheSame(Movie oldItem, Movie newItem) {
+            return oldItem.id == newItem.id;
+        }
+
+        @Override
+        public boolean areContentsTheSame(Movie oldItem, Movie newItem) {
+            if (!oldItem.voteCount.equals(newItem.voteCount))
+                return false;
+            if (!oldItem.voteAverage.equals(newItem.voteAverage))
+                return false;
+            if (!oldItem.title.equals(newItem.title))
+                return false;
+            if (!oldItem.posterPath.equals(newItem.posterPath))
+                return false;
+            return true;
+        }
+    };
 }

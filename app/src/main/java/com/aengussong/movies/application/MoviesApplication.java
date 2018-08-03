@@ -1,4 +1,4 @@
-package com.aengussong.movies;
+package com.aengussong.movies.application;
 
 import com.aengussong.movies.di.DaggerAppComponent;
 

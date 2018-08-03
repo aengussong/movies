@@ -1,7 +1,8 @@
 package com.aengussong.movies.di;
 
-import com.aengussong.movies.MoviesApplication;
+import com.aengussong.movies.application.MoviesApplication;
 import com.aengussong.movies.network.NetworkModule;
+import com.aengussong.movies.viewModel.viewModelDi.ViewModelModule;
 
 import javax.inject.Singleton;
 
@@ -13,6 +14,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {ApplicationModule.class,
         ActivityBuilder.class,
         NetworkModule.class,
+        ViewModelModule.class,
         AndroidSupportInjectionModule.class})
 public interface AppComponent extends AndroidInjector<MoviesApplication> {
     @Component.Builder
